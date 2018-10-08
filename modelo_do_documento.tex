@@ -1,0 +1,154 @@
+\documentclass[openright]{normas-utf-tex} %openright = o capitulo comeca sempre em paginas impares
+%\documentclass[oneside]{normas-utf-tex} %oneside = para dissertacoes com numero de paginas menor que 100 (apenas frente da folha) 
+
+% force A4 paper format
+\special{papersize=210mm,297mm}
+
+\usepackage[alf,abnt-emphasize=bf,bibjustif,recuo=0cm, abnt-etal-cite=2, abnt-etal-text=it]{abntcite} 
+
+\usepackage{caption} 
+\usepackage[font=sf, labelfont=sf, margin=1cm]{caption}
+
+%configuracao correta das referencias bibliograficas.
+\usepackage[brazil]{babel} % pacote portugues brasileiro
+\usepackage[utf8]{inputenc} % pacote para acentuacao direta
+\usepackage{amsmath,amsfonts,amssymb} % pacote matematico
+\usepackage{graphicx} % pacote grafico
+\usepackage{times} % fonte times
+\usepackage[final]{pdfpages} % adicao da ata
+\usepackage{verbatim} %fazer blocos comentados
+\usepackage{nomencl}
+\usepackage{enumerate}
+\usepackage{pdfpages}
+\makenomenclature
+%Podem utilizar GEOMETRY{...} para realizar pequenos ajustes das margens. Onde, left=esquerda, right=direita, top=superior, bottom=inferior. P.ex.:
+%\geometry{left=3.0cm,right=1.5cm,top=4cm,bottom=1cm} 
+              
+% ---------- Preambulo ----------
+\instituicao{Universidade ...} %Definir Universidade
+\programa{Programa de Pós-graduação em ...} %Definir Pós-graduação
+
+\documento{Relatório de Projeto de Tese em Andamento} %Definir tipo de documento se necessário
+
+\nivel{Doutorado} %Definir Mestrado ou Doutorado
+\titulacao{Doutor} %Definir Mestre ou Doutor
+
+\titulo{{TÍTULO DO TRABALHO}}
+\title{ÍTULO DO TRABALHO} % titulo do trabalho em ingles
+
+\autor{Fulano DETAL} 
+\cita{DETAL, Fulano} 
+
+%\palavraschave{Palavra-chave 1, Palavra-chave 2, ...} % palavras-chave do trabalho
+%\keywords{Keyword 1, Keyword 2, ...} % palavras-chave do trabalho em ingles
+
+\comentario{Tipo do documento apresentado ao tal Programa de Pós-graduação da Universidade TAL como requisito parcial para obtenção do grau de "Doutor/Mestre em TAL ÁREA" -- Área de Concentração: Qualquer.}
+
+\orientador{Prof. Dr. Beltrano DETAL}
+\coorientador{Prof. Dr. Cicrano QUALQUER} 
+
+\local{Cidade} 
+\data{\the\year} % ano automatico
+
+% desativa hifenizacao mantendo o texto justificado.
+\tolerance=1
+\emergencystretch=\maxdimen
+\hyphenpenalty=10000
+\hbadness=10000
+\sloppy
+
+%---------- Inicio do Documento ----------
+\begin{document}
+
+% geracao automatica da capa
+\capa 
+% geracao automatica da folha de rosto
+\folhaderosto 
+
+%Resumo
+\begin{resumo}
+Resumo do trabalho
+\end{resumo}
+
+\begin{abstract}
+Abstract of document
+\end{abstract}
+
+\listadefiguras %geração de lista de figuras
+\listadesiglas %geração de lista de siglas
+\printnomenclature %manter para geração das listas
+
+
+\sumario % sumario
+
+%---------- Inicio do Texto ----------
+
+\input{introducao.tex}
+\input{objetivos.tex}
+\input{justificativa.tex}
+\input{metodologia.tex}
+\input{resultados.tex} 
+\input{conclusoes.tex}
+%---------- Referencias ----------
+\clearpage % this is need for add +1 to pageref of bibstart used in 'ficha catalografica'.
+\label{bibstart}
+\bibliography{Bibliografia} % geracao automatica das referencias a partir do arquivo Bibliografia.bib
+\label{bibend}
+
+% ---------- Anexos (opcionais) ----------
+
+\anexo
+
+\chapter{Lista de produções}
+
+\begin{enumerate}
+\begin{large}
+\item Nome do Ítem de inserção (\textbf{anexo B})
+\end{large}
+
+DETAL1, F.T.B.; DETAL2, Q.; DETAL3, S.N.P.; DETAL4, S.P.A.
+Título da Produção \\
+DOI: https://doi.org/doi:XX.XXXXX/XX.aaa.bbbbb
+
+\end{enumerate}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Pacote de dados do \textit{Ferrament}}
+%\begin{figure}[!htb]                
+%\centering                   
+%\includegraphics[width = 1.00\textwidth]{./figura.eps}                      
+%    \footnotesize Fonte: https://www.parara.org     
+%\end{figure}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% --------- Ordenacao Afabetica da Lista de siglas --------
+%\textbf{* Observações:} a ordenacao alfabetica da lista de siglas ainda nao eh realizada de forma automatica, porem é possivel de realizar isto manualmente. Duas formas:
+%
+% ** Primeira forma)
+%    A ordenacao eh feita com o auxilio do comando 'sort', disponivel em qualquer
+% sistema Linux e UNIX, e tambem em sistemas Windows se instalado o coreutils (http://gnuwin32.sourceforge.net/packages/coreutils.htm)
+% comandos para compilar e ordenar, supondo que seu arquivo se chame 'dissertacao.tex':
+%
+%      $ latex dissertacao
+%      $ bibtex dissertacao && latex dissertacao
+%      $ latex dissertacao
+%      $ sort dissertacao.lsg > dissertacao.lsg.tmp
+%      $ mv dissertacao.lsg.tmp dissertacao.lsg
+%      $ latex dissertacao
+%      $ dvipdf dissertacao.dvi
+%
+%
+% ** Segunda forma)
+%\textbf{Sugest\~ao:} crie outro arquivo .tex para siglas e utilize o comando \sigla{sigla}{descri\c{c}\~ao}.
+%Para incluir este arquivo no final do arquivo, utilize o comando \input{arquivo.tex}.
+%Assim, Todas as siglas serao geradas na ultima pagina. Entao, devera excluir a ultima pagina da versao final do arquivo
+% PDF do seu documento.
+
+%-------- Citacoes ---------
+% - Utilize o comando \citeonline{...} para citacoes com o seguinte formato: Autor et al. (2011).
+% Este tipo de formato eh utilizado no comeco do paragrafo. P.ex.: \citeonline{autor2011}
+% - Utilize o comando \cite{...} para citações no meio ou final do paragrafo. P.ex.: \cite{autor2011}
+
+\end{document}
+
